@@ -1,7 +1,11 @@
+const dotenv = require("dotenv");
+dotenv.config();
 const express = require("express");
 const bodyParser = require("body-parser");
 const app = express();
 const https = require("https");
+
+
 app.use(express.static("public"));
 app.use(bodyParser.urlencoded({extended:true}));
 app.get("/" , function(req,res){
@@ -27,7 +31,8 @@ app.post("/" , function(req,res){
     const url = "https://us21.api.mailchimp.com/3.0/lists/96cec4c4fe";
     const options = {
         method : "POST",
-        auth:"suraj20:df80de3fe67d4d8d533c13a2d8050c38-us21"
+        auth:`${process.env.MAILCHIMP}`
+        // auth:"suraj20:dcca229a291b60df08969d730ee4d596-us21"
     }
     
     const request = https.request(url,options,function(response){
