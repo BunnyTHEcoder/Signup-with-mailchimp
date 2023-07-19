@@ -7,10 +7,10 @@ const https = require("https");
 const path =require("path")
 
 
-app.use(express.static("public"));
+app.use(express.static(path.join(__dirname,"..","public")));
 app.use(bodyParser.urlencoded({extended:true}));
 app.get("/*" , function(req,res){
-    res.sendFile(path.join(__dirname,"..","public","index.html"));
+    res.sendFile(path.join(__dirname,"public","index.html"));
 })
 app.post("/" , function(req,res){
     const fn = req.body.fname;
